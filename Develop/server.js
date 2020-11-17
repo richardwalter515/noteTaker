@@ -3,6 +3,10 @@ var path = require("path");
 var fs = require("fs");
 var http = require("http");
 const { RSA_NO_PADDING } = require("constants");
+const { brotliDecompress } = require("zlib");
+var db = require(__dirname + '/db/db.json');
+console.log('db:', db)
+
 
 
 //set up express port
@@ -32,21 +36,29 @@ app.get("/notes", function(req, res) {
 //API routes:
 //get note
 app.get("/api/notes", function(req, res) {
-    fs.readFile("/db/db.json", "utf8", function(error, data) {
-
+    return fs.readFile(path.join(__dirname, "/db/db.json"), "utf8", function(error, data) {
         if (error) {
           return console.log(error);
         }
-      
-        return res.json(data);
-      
+        console.log('data:', data)
+        return res.json(JSON.parse(data));
       });
 });
 // //post note
 app.post("/api/notes", function(req, res) {
     var newNote = req.body;
+    db.push(newNote);
+    // make array and push new note to it and then add to db .json file.  make sure that
+    console.log('newNote:', newNote)
+    fs.writeFile(__dirname + '/db/db.json', JSON.stringify(db), function(error) {
+      if(error){
+        throw error;
+      }
+    });
+    res.json(db);
 });
 // //delete note
+//npm package uuid g
 // app.get("/api/notes/:id", function(req, res) {
 //     return res.json(reservations);
 // });
