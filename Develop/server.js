@@ -5,7 +5,7 @@ var http = require("http");
 const { RSA_NO_PADDING } = require("constants");
 const { brotliDecompress } = require("zlib");
 var db = require(__dirname + '/db/db.json');
-console.log('db:', db)
+const { v4: uuidv4 } = require('uuid');
 
 
 
@@ -46,10 +46,9 @@ app.get("/api/notes", function(req, res) {
 });
 // //post note
 app.post("/api/notes", function(req, res) {
+    // var id = uuidv4();
     var newNote = req.body;
     db.push(newNote);
-    // make array and push new note to it and then add to db .json file.  make sure that
-    console.log('newNote:', newNote)
     fs.writeFile(__dirname + '/db/db.json', JSON.stringify(db), function(error) {
       if(error){
         throw error;
@@ -58,7 +57,12 @@ app.post("/api/notes", function(req, res) {
     res.json(db);
 });
 // //delete note
-//npm package uuid g
-// app.get("/api/notes/:id", function(req, res) {
-//     return res.json(reservations);
-// });
+app.get("/api/notes/:id", function(req, res) {
+  var chosenNote = req.params.id;
+
+  console.log(chosenNote);
+  fs.unlink(__dirname + '/db/db.json', chosenNote, function (err) {
+    if (err) throw err;
+    console.log('Note deleted!');
+  });
+});
