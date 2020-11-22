@@ -43,15 +43,19 @@ class Store {
     };
 
     //delete notes
-    // removeNotes(id) {
-    // //   var id = req.params.id;
-    
-    // //   console.log(chosenNote);
-    // // };
-    // //   fs.unlink(__dirname + '/db/db.json', chosenNote, function (err) {
-    // //   if (err) throw err;
-    // //   console.log('Note deleted!');
-    // // });
+    removeNotes(id) {
+      // const selectedNote  = {title, text, id};
+      // console.log('selectedNote:', selectedNote)
+      // //then return the notes with the selected note unlinked
+      // return this.readNotes()
+      // .then((selectedNote) => this.unlink(selectedNote));
+      // const {title, text, id} = chosenNote;
+      return this.getNotes()
+      .then(fs.unlink(id, function (err) {
+      if (err) throw err;
+      console.log('Note deleted!');
+      }));
+    };
 };
 
 module.exports = new Store()

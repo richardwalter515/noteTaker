@@ -21,11 +21,12 @@ app.post("/notes", function(req, res) {
 });
 
 //delete note
-// app.delete("/api/notes/:id", function(req, res) {
-//   store
-//   .removeNotes(req.params.id)
-//   res.json(db);
-// });
+app.delete("/notes/:id", function(req, res) {
+  store
+  .removeNotes(req.params.id)
+  .then((note) => res.json(note))
+  .catch(err => res.status(500).json(err))
+});
 
 module.exports = app;
 
