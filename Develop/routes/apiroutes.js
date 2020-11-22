@@ -1,5 +1,4 @@
 const store = require("../db/store");
-const path = require("path");
 const express = require("express");
 const app = express();
 
@@ -14,7 +13,7 @@ app.get("/notes", (req, res) => {
 
 //post note
 
-app.post("/api/notes", function(req, res) {
+app.post("/notes", function(req, res) {
   store
   .addNotes(req.body)
   .then((note) => res.json(note))
@@ -33,6 +32,6 @@ module.exports = app;
 //API routes:
 
 //get all notes
-  app.get("/api/notes", (req, res) => {
+  app.get("/notes", (req, res) => {
     store.read()
   });
