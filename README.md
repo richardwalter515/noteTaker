@@ -13,9 +13,9 @@ This application is designed to gather information via inquirer in node.js and u
 
 
 ## Image of product <a name="screenshots"></a>
-![home](Assets/home.png)
-![previousNotes](Assets/prevNotes.png)
-![saveFunction](Assets/saveFunc.png)
+![home](../Assets/home.png)
+![previousNotes](../Assets/prevNotes.png)
+![saveFunction](../Assets/saveFunc.png)
 
 
 ## Usage <a name="usage"></a>
