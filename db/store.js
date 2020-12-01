@@ -44,17 +44,19 @@ class Store {
 
     //delete notes
     removeNotes(id) {
+      return this.read().then(notes => {
+        const filteredNotes = notes.filter(note => {
+          return note.id !== id
+        })
+        return filteredNotes;
+      })
       // const selectedNote  = {title, text, id};
       // console.log('selectedNote:', selectedNote)
       // //then return the notes with the selected note unlinked
       // return this.readNotes()
       // .then((selectedNote) => this.unlink(selectedNote));
       // const {title, text, id} = chosenNote;
-      return this.getNotes()
-      .then((function (err) {
-      if (err) throw err;
-      console.log('Note deleted!');
-      }));
+
     };
 };
 
