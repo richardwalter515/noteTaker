@@ -51,7 +51,7 @@ class Store {
       // .then((selectedNote) => this.unlink(selectedNote));
       // const {title, text, id} = chosenNote;
       return this.getNotes()
-      .then(fs.unlink(id, function (err) {
+      .then((function (err) {
       if (err) throw err;
       console.log('Note deleted!');
       }));

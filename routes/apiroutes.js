@@ -22,8 +22,9 @@ app.post("/notes", function(req, res) {
 
 //delete note
 app.delete("/notes/:id", function(req, res) {
+  const id = req.params.id;
   store
-  .removeNotes(req.params.id)
+  .removeNotes(id)
   .then((note) => res.json(note))
   .catch(err => res.status(500).json(err))
 });
