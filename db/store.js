@@ -45,9 +45,11 @@ class Store {
     //delete notes
     removeNotes(id) {
       return this.read().then(notes => {
-        const filteredNotes = notes.filter(note => {
+        console.log('notes:', notes)
+        const filteredNotes = JSON.parse(notes).filter(note => {
           return note.id !== id
         })
+        this.write(filteredNotes)
         return filteredNotes;
       })
       // const selectedNote  = {title, text, id};

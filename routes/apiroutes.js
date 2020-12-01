@@ -26,14 +26,10 @@ app.delete("/notes/:id", function(req, res) {
   store
   .removeNotes(id)
   .then((note) => res.json(note))
-  .catch(err => res.status(500).json(err))
-});
+  .catch(err => {
+    console.log("error", err);
+    res.status(500).json(err)
+  }
+)});
 
 module.exports = app;
-
-//API routes:
-
-//get all notes
-  app.get("/notes", (req, res) => {
-    store.read()
-  });
