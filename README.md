@@ -9,7 +9,7 @@
   
   
 ## Description <a name="description"></a>
-This application is designed to gather information via inquirer in node.js and use the data to render an HTML site that displays relevant information about members of your team.
+This application is designed to allow the user to write, edit, and delete notes.  The notes that are saved will persist in the application until the user decides to delete them.  The full application can be found [here](https://boiling-temple-90514.herokuapp.com/)
 
 
 ## Image of product <a name="screenshots"></a>
